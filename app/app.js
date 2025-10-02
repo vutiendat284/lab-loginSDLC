@@ -1,42 +1,41 @@
 // app/app.js
 const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
 const app = express();
+
+// Middleware để parse request body (form, JSON)
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-const JWT_SECRET = process.env.JWT_SECRET || 'changeme';
-
-// In-memory demo user (CHỈ DÙNG CHO LAB)
-const USERS = [
-  { id: 1, username: 'test', passwordHash: bcrypt.hashSync('password123', 8), role: 'user' }
-];
-
-app.post('/login', async (req, res) => {
-  const { username, password } = req.body || {};
-  if (!username || !password) return res.status(400).json({ error: 'username/password required' });
-
-  const user = USERS.find(u => u.username === username);
-  if (!user) return res.status(401).json({ error: 'Invalid credentials' });
-
-  const ok = await bcrypt.compare(password, user.passwordHash);
-  if (!ok) return res.status(401).json({ error: 'Invalid credentials' });
-
-  const token = jwt.sign({ sub: user.id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
-  res.json({ token });
+// Homepage
+app.get('/', (req, res) => {
+  res.send('Hello Sốp 🚀 - App is running!');
 });
 
-app.get('/profile', (req, res) => {
-  const a = req.headers.authorization || '';
-  const m = a.match(/^Bearer (.+)$/);
-  if (!m) return res.status(401).json({ error: 'No token' });
-  try {
-    const payload = jwt.verify(m[1], JWT_SECRET);
-    res.json({ id: payload.sub, role: payload.role });
-  } catch (e) {
-    return res.status(401).json({ error: 'Invalid token' });
+// Login page
+app.get('/login', (req, res) => {
+  res.send(`
+    <h1>Login Page</h1>
+    <form method="post" action="/login">
+      <input type="text" name="username" placeholder="Username" />
+      <input type="password" name="password" placeholder="Password" />
+      <button type="submit">Login</button>
+    </form>
+  `);
+});
+
+// Handle login POST
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  if (username === 'sop' && password === '123') {
+    res.send('Login success ✅');
+  } else {
+    res.send('Login failed ❌');
   }
+});
+
+// Logout
+app.get('/logout', (req, res) => {
+  res.send('Logged out!');
 });
 
 module.exports = app;
