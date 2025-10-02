@@ -1,0 +1,21 @@
+{
+  "modelName": "Login Page Threat Model - lab-loginSDLC",
+  "diagram": {
+    "nodes": [
+      {"id":"user","type":"actor","title":"User (Browser)"},
+      {"id":"web","type":"process","title":"Web Server (Auth API)"},
+      {"id":"db","type":"store","title":"Users Database"}
+    ],
+    "flows": [
+      {"from":"user","to":"web","title":"POST /login (username,password)"},
+      {"from":"web","to":"db","title":"SELECT user"},
+      {"from":"db","to":"web","title":"Auth result"},
+      {"from":"web","to":"user","title":"Session token"}
+    ]
+  },
+  "threats": [
+    {"element":"flow_user_web","type":"Spoofing","description":"Credential stuffing or stolen credentials"},
+    {"element":"web","type":"Tampering","description":"JWT tampering or parameter tampering"},
+    {"element":"db","type":"Information disclosure","description":"DB leak or SQLi"}
+  ]
+}
