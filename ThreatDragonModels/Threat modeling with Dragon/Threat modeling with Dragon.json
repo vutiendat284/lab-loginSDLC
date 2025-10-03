@@ -35,6 +35,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 1,
             "ports": {
               "groups": {
                 "top": {
@@ -118,7 +119,6 @@
               ]
             },
             "id": "99c1f142-f2db-4c87-866f-51e8c6bc8969",
-            "zIndex": 1,
             "data": {
               "type": "tm.Process",
               "name": "Process",
@@ -152,6 +152,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -235,7 +236,6 @@
               ]
             },
             "id": "f555bef8-c8f7-4dcb-b8a0-a1a3fc518bf2",
-            "zIndex": 2,
             "data": {
               "type": "tm.Actor",
               "name": "Actor",
@@ -244,7 +244,7 @@
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": true,
-              "providesAuthentication": false,
+              "providesAuthentication": true,
               "threats": [
                 {
                   "id": "540b8826-9d10-492e-9aed-edccc0fc0b5b",
@@ -258,15 +258,30 @@
                   "new": false,
                   "number": 2,
                   "score": ""
+                },
+                {
+                  "id": "3b25199e-04d0-4b18-aa8b-1644e313b768",
+                  "title": "Brute force",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "No suggestions available for this context. Add one manually please",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 2,
                 "repudiation": 0
               }
             },
             "tools": {
               "items": [
+                "boundary",
+                "button-remove",
                 "boundary",
                 "button-remove"
               ],
@@ -399,6 +414,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 11,
             "ports": {
               "groups": {
                 "top": {
@@ -482,7 +498,6 @@
               ]
             },
             "id": "56504d11-10c9-49a6-8fd8-4821d27fc4a6",
-            "zIndex": 11,
             "data": {
               "type": "tm.Store",
               "name": "Store",
@@ -500,10 +515,561 @@
             }
           }
         ]
+      },
+      {
+        "id": 2,
+        "title": "New CIA diagram",
+        "diagramType": "CIA",
+        "placeholder": "New CIA diagram description",
+        "thumbnail": "./public/content/images/thumbnail.cia.jpg",
+        "version": "2.5.0",
+        "cells": [
+          {
+            "position": {
+              "x": 460,
+              "y": 250
+            },
+            "size": {
+              "width": 60,
+              "height": 60
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "2c1cd235-f6e1-4568-980d-9823799da941"
+                },
+                {
+                  "group": "right",
+                  "id": "3f17a590-0cba-42d0-9827-c18dc2233cda"
+                },
+                {
+                  "group": "bottom",
+                  "id": "85af009f-91d2-40d6-ac6a-43238b167f72"
+                },
+                {
+                  "group": "left",
+                  "id": "bfd05806-6bf7-4f0d-a3b2-c72e1d6b2759"
+                }
+              ]
+            },
+            "id": "6f7f2a5a-2406-4cfd-a203-0d11109f068f",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Process",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "3ac4a7e6-0dfa-4335-bb50-e711a902cba6",
+                  "title": "New CIA threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Availability",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "CIA",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                },
+                {
+                  "id": "8c8548c5-22fd-4c46-ac02-187833bb1942",
+                  "title": "New CIA threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Confidentiality",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "CIA",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "confidentiality": 1,
+                "integrity": 0,
+                "availability": 1
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 200,
+              "y": 160
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "655b0e43-b92b-4fc6-8ebe-67ec31af6b01"
+                },
+                {
+                  "group": "right",
+                  "id": "4e6ebeda-a412-43fa-8614-5adc50af6540"
+                },
+                {
+                  "group": "bottom",
+                  "id": "5f5c9e65-00a8-4f52-b046-9169897f94f3"
+                },
+                {
+                  "group": "left",
+                  "id": "3771791d-6507-46c8-8051-c5b2dcc10fd4"
+                }
+              ]
+            },
+            "id": "70d1caab-c18d-4f7a-8a1c-0d81c3b2965a",
+            "zIndex": 2,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Actor",
+              "description": "",
+              "isTrustBoundary": false,
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "4f6e21f7-9987-46ef-82cb-54cf53e3f8b8",
+                  "title": "New CIA threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Confidentiality",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "CIA",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "confidentiality": 1,
+                "integrity": 0,
+                "availability": 0
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 711,
+              "y": 190
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "c934ebfa-171a-489b-8c17-18fda4b72d5a"
+                },
+                {
+                  "group": "right",
+                  "id": "4b656a57-6380-4d22-bef5-ce59ed4ab9d4"
+                },
+                {
+                  "group": "bottom",
+                  "id": "90864f6a-4db7-4ad2-be14-0cf289a3f2fd"
+                },
+                {
+                  "group": "left",
+                  "id": "954c8506-65e1-46c5-8298-8058976379e7"
+                }
+              ]
+            },
+            "id": "d5c05559-f575-4de9-82e7-b4aecaa1f99a",
+            "zIndex": 3,
+            "data": {
+              "type": "tm.Store",
+              "name": "Store",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "c40dc9d3-040e-43d4-a377-eba178b07588",
+                  "title": "New CIA threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Integrity",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "CIA",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "confidentiality": 0,
+                "integrity": 1,
+                "availability": 0
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "bfd14002-6795-4537-b1a4-c9df10562005",
+            "source": {
+              "x": 313,
+              "y": 190
+            },
+            "target": {
+              "cell": "6f7f2a5a-2406-4cfd-a203-0d11109f068f",
+              "port": "bfd05806-6bf7-4f0d-a3b2-c72e1d6b2759"
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "4af457e6-150e-4675-b154-77aada5fdfec",
+                  "title": "New CIA threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Confidentiality",
+                  "description": "Need authenticate, ",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "CIA",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "confidentiality": 1,
+                "integrity": 0,
+                "availability": 0
+              }
+            },
+            "labels": [
+              "Data Flow"
+            ],
+            "id": "0f968005-4852-40f8-bb16-c76ee6afaadd",
+            "source": {
+              "x": 520,
+              "y": 280
+            },
+            "target": {
+              "cell": "d5c05559-f575-4de9-82e7-b4aecaa1f99a",
+              "port": "954c8506-65e1-46c5-8298-8058976379e7"
+            }
+          }
+        ]
       }
     ],
-    "diagramTop": 1,
+    "diagramTop": 3,
     "reviewer": "",
-    "threatTop": 2
+    "threatTop": 9
   }
 }
