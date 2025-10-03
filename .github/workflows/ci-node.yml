@@ -65,7 +65,7 @@ jobs:
           done
 
       - name: ZAP baseline scan (DAST)
-        uses: zaproxy/action-baseline@v0.6.0
+        uses: zaproxy/action-baseline@master
         with:
           target: 'http://localhost:8080'
           # optional: tune policy/rules file if needed
