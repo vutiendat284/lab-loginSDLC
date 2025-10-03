@@ -46,7 +46,7 @@ jobs:
         run: docker build -t lab-loginsdlc:${{ github.sha }} .
 
       - name: Trivy scan image (vuln check)
-        uses: aquasecurity/trivy-action@v0.33.1
+        uses: aquasecurity/trivy-action@v0.32.0
         with:
           image-ref: lab-loginsdlc:${{ github.sha }}
           format: 'table'
