@@ -1,0 +1,23 @@
+name: CD - publish image
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  publish-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & push image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/lab-login:${{ github.sha }} .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/lab-login:${{ github.sha }}

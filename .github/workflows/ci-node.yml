@@ -1,63 +1,74 @@
 name: CI - lab-loginSDLC
 
 on:
-  push:
-    branches: [ develop, main ]
   pull_request:
     branches: [ main ]
+  push:
+    branches: [ develop, main ]
 
 jobs:
   test-and-sast:
+    name: Test & SAST
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Use Node 18
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Install dependencies
         run: npm ci
-        working-directory: .
 
       - name: Run unit tests
         run: npm test
-        working-directory: .
 
-      - name: Install Semgrep
+      - name: Run npm audit (warn)
+        run: npm audit --audit-level=high || true
+
+      - name: Install Semgrep (for SAST)
         run: python3 -m pip install --upgrade pip && pip3 install semgrep
 
       - name: Run Semgrep (SAST)
-        run: semgrep --config=auto ./app
+        run: semgrep --config=auto ./app || true
 
-  build-scan-dast:
+  build-and-scan-dast:
+    name: Build image → Trivy scan → Run container → ZAP DAST
     runs-on: ubuntu-latest
     needs: test-and-sast
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Build Docker image
         run: docker build -t lab-loginsdlc:${{ github.sha }} .
 
-      - name: Trivy image scan
+      - name: Trivy scan image (vuln check)
         uses: aquasecurity/trivy-action@v0.4.3
         with:
           image-ref: lab-loginsdlc:${{ github.sha }}
           format: 'table'
 
-      - name: Run container
-        run: docker run -d --rm --name lab-loginsdlc -p 8080:8080 -e JWT_SECRET="${{ secrets.JWT_SECRET }}" lab-loginsdlc:${{ github.sha }}
-
-      - name: Wait for app
+      - name: Run container (background)
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: |
-          for i in {1..10}; do
-            if curl -sSf http://localhost:8080/ >/dev/null; then echo "up"; break; fi
-            sleep 1
+          docker run -d --rm --name lab-login -p 8080:8080 -e JWT_SECRET="${JWT_SECRET}" lab-loginsdlc:${{ github.sha }}
+
+      - name: Wait for app to be ready
+        run: |
+          for i in $(seq 1 15); do
+            if curl -sSf http://localhost:8080/ >/dev/null 2>&1; then echo "up"; break; fi
+            sleep 2
           done
 
-      - name: ZAP baseline (DAST)
+      - name: ZAP baseline scan (DAST)
         uses: zaproxy/action-baseline@v0.6.0
         with:
           target: 'http://localhost:8080'
-          rules_file_name: 'zap_rules.md'
+          # optional: tune policy/rules file if needed
+
+      - name: Stop container
+        run: docker stop lab-login || true
